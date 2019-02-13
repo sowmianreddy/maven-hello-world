@@ -1,15 +1,13 @@
 pipeline {
     agent any
-    tools {
-        maven 'Maven 3.3.9'
-        jdk 'jdk8'
-    }
-    stages {
+        stages {
         stage ('Initialize') {
             steps {
                 sh '''
+                   export MAVEN_HOME=/opt/apache-maven-3.5.4/bin
+                   export PATH=${MAVEN_HOME}:${PATH}
                     echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
+                    echo "MAVEN_HOME = ${MAVEN_HOME}"
                 '''
             }
         }
