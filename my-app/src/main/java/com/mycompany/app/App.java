@@ -11,7 +11,7 @@ public class App
         System.out.println( "Hello World!" );
         System.out.println( "To test CI branch commit" );
         System.out.println("A NullPointerException is a drag...");
-        System.out.printn("Another print to test jenkins");
+        System.out.println("Another print to test jenkins");
         Object myObject = null;
         /**
          * Checker prevents this from compiling...
