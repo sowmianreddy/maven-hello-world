@@ -14,7 +14,9 @@ pipeline {
 
         stage ('Build') {
             steps {
+                dir ("${env.WORKSPACE}/my-app") {
                 sh '/opt/apache-maven-3.5.4/bin/mvn -Dmaven.test.failure.ignore=true install' 
+            }
             }
             post {
                 success {
