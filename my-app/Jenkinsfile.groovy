@@ -20,10 +20,14 @@ pipeline {
             }
             post {
                 success {
-                 sh '''
+                    steps {
+                         dir ("${env.WORKSPACE}/my-app") {
+                    sh '''
                  java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
                  '''
-                }
+         
+                    }
+                  }
             }
         }
     }
