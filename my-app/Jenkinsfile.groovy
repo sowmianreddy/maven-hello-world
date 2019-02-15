@@ -1,11 +1,16 @@
 pipeline {
     agent any
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
         stages {
         stage ('Initialize') {
             steps {
-                sh '''
-                   export MAVEN_HOME=/opt/apache-maven-3.5.4/bin
-                   export PATH=${MAVEN_HOME}:${PATH}
+                  sh '''
+                    printenv
+                    export MAVEN_HOME=/opt/apache-maven-3.5.4/bin
+                    export PATH=${MAVEN_HOME}:${PATH}
                     echo "PATH = ${PATH}"
                     echo "MAVEN_HOME = ${MAVEN_HOME}"
                 '''
