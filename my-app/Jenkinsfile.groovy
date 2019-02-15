@@ -34,8 +34,12 @@ pipeline {
             }      
          }
         stage ('Git merge'){
+          when {
+               expression { return env.GIT_BRANCH != 'master'}
+           }
+              
             steps {
-                dir ("${env.GIT_DIR}"){
+                 dir ("${env.GIT_DIR}"){
                      checkout scm: [
                         $class: 'GitSCM', userRemoteConfigs: [
                             [
@@ -46,7 +50,7 @@ pipeline {
                         ],
                         branches: [
                             [
-                             name: "refs/heads/${env.GIT_BRANCH}"
+                             name: "refs/heads/master"
                             ]
                         ],
                         poll: false
@@ -54,8 +58,14 @@ pipeline {
                     
                 }
                dir ("${env.GIT_DIR}/maven-hello-world"){
+                   sh '''
+                        git merge ${env.GIT_BRANCH}
+                        git commit -am "Merged develop branch to master"
+                        git push origin master
+                   '''
                 }
-            }
+            
+             }
             
          }
             
