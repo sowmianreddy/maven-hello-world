@@ -13,6 +13,7 @@ public class App
         System.out.println("A NullPointerException is a drag...");
         System.out.println("Another print to test jenkins");
         System.out.println("Added a new print in pipiline ci");
+        System.out.println("second print");
         Object myObject = null;
         /**
          * Checker prevents this from compiling...
