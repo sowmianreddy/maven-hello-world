@@ -3,7 +3,6 @@ pipeline {
     environment {
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'sqlite'
-        GIT_DIR      =  '${env.HOME}/git_dir'
     }
         stages {
         stage ('Initialize') {
@@ -14,7 +13,7 @@ pipeline {
                     export PATH=${MAVEN_HOME}:${PATH}
                     echo "PATH = ${PATH}"
                     echo "MAVEN_HOME = ${MAVEN_HOME}"
-                    mkdir ${GIT_DIR}
+                    
                 '''
             }
         }
@@ -33,42 +32,43 @@ pipeline {
                   }
             }      
          }
+        
         stage ('Git merge'){
           when {
                expression { return env.GIT_BRANCH != 'master'}
            }
               
             steps {
-                 dir ("${env.GIT_DIR}"){
+                 dir ("${env.HOME}/test-git-repo"){
                      checkout scm: [
                         $class: 'GitSCM', userRemoteConfigs: [
                             [
-                                url: 'git@github.com:sowmianreddy/maven-hello-world.git',
+                               url: 'git@github.com:sowmianreddy/maven-hello-world.git', 
+                              /*  url: 'https://github.com/sowmianreddy/maven-hello-world.git', */
                                 credentialsId: '4d15fa75-11f4-4eaf-9f69-9f9ce2d5bdc5',
                                 changelog: false,
                             ]
                         ],
-                        branches: [
-                            [
-                             name: "refs/heads/master"
-                            ]
-                        ],
+                      
                         poll: false
                     ]
                     
                 }
-               dir ("${env.GIT_DIR}/maven-hello-world"){
-                   sh '''
-                        git merge ${env.GIT_BRANCH}
-                        git commit -am "Merged develop branch to master"
+               dir ("${env.HOME}/test-git-repo"){
+                   
+                    sh '''
+                        git branch
+                        git checkout master
+                        git add *
+                        git merge origin/pipeline_ci
+                        git commit -m "Merged develop branch to master"
                         git push origin master
                    '''
                 }
             
-             }
+            }
             
          }
-            
-        }
+        
     }
 }
