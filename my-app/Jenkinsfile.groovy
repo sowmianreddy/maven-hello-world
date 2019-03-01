@@ -62,8 +62,7 @@ pipeline {
                         git add *
                         git merge origin/pipeline_ci
                         git commit -m "Merged develop branch to master"
-                        git push origin master
-                   '''
+                     '''
                 }
             
             }
