@@ -35,7 +35,7 @@ pipeline {
                   }
             }      
          }
-        
+        /*
         stage ('Git merge'){
           when {
                expression { return env.GIT_BRANCH != 'master'}
@@ -47,7 +47,7 @@ pipeline {
                         $class: 'GitSCM', userRemoteConfigs: [
                             [
                                url: 'git@github.com:sowmianreddy/maven-hello-world.git', 
-                              /*  url: 'https://github.com/sowmianreddy/maven-hello-world.git', */
+                                //url: 'https://github.com/sowmianreddy/maven-hello-world.git', 
                                 credentialsId: '4d15fa75-11f4-4eaf-9f69-9f9ce2d5bdc5',
                                 changelog: false,
                             ]
@@ -71,6 +71,6 @@ pipeline {
             }
             
          }
-        
+        */
     }
 }
