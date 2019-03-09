@@ -1,11 +1,13 @@
 pipeline {
-    agent any
+        agent {
+                docker { image 'maven:3-alpine' }
+            }
     environment {
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'sqlite'
     }
         stages {
-        stage ('Initialize') {
+    /*    stage ('Initialize') {
             steps {
                   sh '''
                     printenv
@@ -17,11 +19,12 @@ pipeline {
                 '''
             }
         }
-
+*/
         stage ('Build') {
             steps {
                 dir ("${env.WORKSPACE}/my-app") {
-                    sh '/opt/apache-maven-3.5.4/bin/mvn -Dmaven.test.failure.ignore=true install' 
+                    // sh '/opt/apache-maven-3.5.4/bin/mvn -Dmaven.test.failure.ignore=true install' 
+                    sh 'mvn -Dmaven.test.failure.ignore=true install' 
                 }
             }
          }
