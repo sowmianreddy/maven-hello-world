@@ -1,11 +1,13 @@
 pipeline {
-        agent 
+        agent {
+                docker { image 'maven:3-alpine' }
+            }
     environment {
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'sqlite'
     }
         stages {
-        stage ('Initialize') {
+    /*    stage ('Initialize') {
             steps {
                   sh '''
                     printenv
@@ -17,7 +19,7 @@ pipeline {
                 '''
             }
         }
-
+*/
         stage ('Build') {
             steps {
                 dir ("${env.WORKSPACE}/my-app") {
@@ -33,9 +35,6 @@ pipeline {
                   }
             }      
          }
-	stage ('build merge job') {
-            build 'demo-2'
-	}
         /*
         stage ('Git merge'){
           when {
