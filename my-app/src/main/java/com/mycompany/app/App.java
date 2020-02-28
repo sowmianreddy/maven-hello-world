@@ -12,7 +12,7 @@ public class App
         System.out.println( "To test CI branch commit" );
         System.out.println("A NullPointerException is a drag...");
         System.out.println("Another print to test jenkins");
-        System.out.println("checking again on ci commit and master merge");
+        System.out.println("this time checking again on ci commit and master merge");
         Object myObject = null;
         /**
          * Checker prevents this from compiling...
