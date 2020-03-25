@@ -10,7 +10,7 @@ pipeline {
                   		sh '''
                     		printenv
                     		#export MAVEN_HOME=/opt/apache-maven-3.6.0
-				export MAVEN_HOME=/usr/share/apache-maven
+				export MAVEN_HOME=/opt/apache-maven-3.2.2
                     		export PATH=${MAVEN_HOME}/bin:${PATH}
                     		echo "PATH = ${PATH}"
                     		echo "MAVEN_HOME = ${MAVEN_HOME}"
