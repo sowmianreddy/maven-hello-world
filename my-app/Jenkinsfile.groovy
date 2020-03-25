@@ -9,7 +9,8 @@ pipeline {
            		 steps {
                   		sh '''
                     		printenv
-                    		export MAVEN_HOME=/opt/apache-maven-3.6.0
+                    		#export MAVEN_HOME=/opt/apache-maven-3.6.0
+				export MAVEN_HOME=/usr/share/apache-maven
                     		export PATH=${MAVEN_HOME}/bin:${PATH}
                     		echo "PATH = ${PATH}"
                     		echo "MAVEN_HOME = ${MAVEN_HOME}"
@@ -25,6 +26,7 @@ pipeline {
             		steps {
                 		dir ("${env.WORKSPACE}/my-app") {
                     		// sh '/opt/apache-maven-3.5.4/bin/mvn -Dmaven.test.failure.ignore=true install' 
+					sh 'mvn -version'
         				sh 'mvn clean '            		
 					sh 'mvn -Dmaven.test.failure.ignore=true install' 
                 		}
