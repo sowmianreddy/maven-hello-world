@@ -22,7 +22,8 @@ pipeline {
             		steps {
                 		dir ("${env.WORKSPACE}/my-app") {
                     		// sh '/opt/apache-maven-3.5.4/bin/mvn -Dmaven.test.failure.ignore=true install' 
-                    		sh 'mvn -Dmaven.test.failure.ignore=true install' 
+        				sh 'mvn clean'            		
+					sh 'mvn -Dmaven.test.failure.ignore=true install' 
                 		}
             		}
          	}
