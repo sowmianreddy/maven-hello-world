@@ -15,7 +15,7 @@ pipeline {
                     		echo "PATH = ${PATH}"
                     		echo "MAVEN_HOME = ${MAVEN_HOME}"
 				export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk.x86_64
-				export PATH=$JAVA_HOME}/bin:$PATH
+				export PATH=${JAVA_HOME}/bin:$PATH
 				echo "JAVA_HOME=${JAVA_HOME}"
 				mvn -version                  
                 		'''
