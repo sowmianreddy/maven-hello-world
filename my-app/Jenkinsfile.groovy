@@ -26,7 +26,7 @@ pipeline {
             		steps {
                 		dir ("${env.WORKSPACE}/my-app") {
                     		// sh '/opt/apache-maven-3.5.4/bin/mvn -Dmaven.test.failure.ignore=true install' 
-					sh 'export MAVEN_HOME=/opt//opt/apache-maven-3.6.3'
+					sh 'export MAVEN_HOME=/opt/apache-maven-3.6.3'
 					sh 'export PATH=${MAVEN_HOME}/bin:${PATH}'
 					sh 'mvn -version'
         				sh 'mvn clean '            		
